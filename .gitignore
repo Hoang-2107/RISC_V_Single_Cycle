@@ -1,0 +1,19 @@
+# Vivado generated
+RISC.cache/
+RISC.hw/
+RISC.ip_user_files/
+RISC.runs/
+RISC.sim/
+*.jou
+*.log
+*.str
+*.pb
+*.wdb
+*.backup.*
+
+# Build outputs
+sim_build/
+sw/build/
+*.vcd
+*.o
+*.elf
