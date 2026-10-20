@@ -1,0 +1,57 @@
+// ============================================================================
+// rv32i_test.hex - Chuong trinh test cac lenh RV32I (nap vao Instruction_Mem)
+//   Moi dong = 1 lenh 32-bit (hex), dong dau tien = dia chi 0x00.
+//   Phan sau "//" la chu thich, $readmemh tu bo qua.
+//
+//   Moi lenh nhanh/nhay DUNG se bo qua lenh "addi x31, x31, 1" ngay sau no
+//   -> cuoi chuong trinh x31 phai = 0.
+//   Ket thuc o PC = 0xA0 (jal x0, 0 -> nhay tai cho).
+//
+//   Ket qua mong doi:
+//     x1 =FFFFFFFB  x2 =00000007  x3 =12345000  x4 =0000100C  x5 =00000001
+//     x6 =00000001  x7 =0000004C  x8 =00000060  x9 =00000058  x10=00000040
+//     x11=80818283  x12=FFFFFF83  x13=00000082  x14=FFFF8081  x15=00008283
+//     x16=00070783  x17=00000001  x18=00000083  x19=FFFFFFFD  x20=FFFFFFF8
+//     x31=00000000
+// ============================================================================
+ffb00093 // 0x00  addi  x1, x0, -5
+00700113 // 0x04  addi  x2, x0, 7
+123451b7 // 0x08  lui   x3, 0x12345
+00001217 // 0x0C  auipc x4, 1
+00209463 // 0x10  bne   x1, x2, +8      (nhay)
+001f8f93 // 0x14  addi  x31, x31, 1     (bi bo qua)
+0020c463 // 0x18  blt   x1, x2, +8      (nhay: -5 < 7)
+001f8f93 // 0x1C  addi  x31, x31, 1
+00115463 // 0x20  bge   x2, x1, +8      (nhay: 7 >= -5)
+001f8f93 // 0x24  addi  x31, x31, 1
+00116463 // 0x28  bltu  x2, x1, +8      (nhay: 7 < 0xFFFFFFFB)
+001f8f93 // 0x2C  addi  x31, x31, 1
+0020f463 // 0x30  bgeu  x1, x2, +8      (nhay)
+001f8f93 // 0x34  addi  x31, x31, 1
+00208a63 // 0x38  beq   x1, x2, bad1    (KHONG nhay)
+00100293 // 0x3C  addi  x5, x0, 1
+00109663 // 0x40  bne   x1, x1, bad1    (KHONG nhay)
+00100313 // 0x44  addi  x6, x0, 1
+008003ef // 0x48  jal   x7, +8          (x7 = 0x4C)
+001f8f93 // 0x4C  bad1: addi x31, x31, 1
+06000413 // 0x50  addi  x8, x0, 0x60
+004404e7 // 0x54  jalr  x9, 4(x8)       (x9 = 0x58, nhay toi 0x64)
+001f8f93 // 0x58  addi  x31, x31, 1
+001f8f93 // 0x5C  addi  x31, x31, 1
+001f8f93 // 0x60  addi  x31, x31, 1
+04000513 // 0x64  addi  x10, x0, 0x40
+808185b7 // 0x68  lui   x11, 0x80818
+28358593 // 0x6C  addi  x11, x11, 0x283 (x11 = 0x80818283)
+00b52023 // 0x70  sw    x11, 0(x10)
+00050603 // 0x74  lb    x12, 0(x10)
+00154683 // 0x78  lbu   x13, 1(x10)
+00251703 // 0x7C  lh    x14, 2(x10)
+00055783 // 0x80  lhu   x15, 0(x10)
+002500a3 // 0x84  sb    x2, 1(x10)
+00251123 // 0x88  sh    x2, 2(x10)
+00052803 // 0x8C  lw    x16, 0(x10)
+0000a893 // 0x90  slti  x17, x1, 0
+0ff5f913 // 0x94  andi  x18, x11, 0xFF
+4010d993 // 0x98  srai  x19, x1, 1
+fff14a13 // 0x9C  xori  x20, x2, -1
+0000006f // 0xA0  halt: jal x0, 0

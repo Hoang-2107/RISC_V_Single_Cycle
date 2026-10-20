@@ -1,0 +1,6 @@
+{
+    "verilog.linting.linter": "iverilog",
+    "verilog.linting.path": "C:/iverilog/bin",
+    "verilog.linting.iverilog.arguments": "-g2012 -y RISC.srcs/sources_1/new",
+    "verilog.linting.iverilog.runAtFileLocation": false
+}

@@ -1,0 +1,77 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Chay testbench dang mo",
+            "type": "shell",
+            "command": "powershell",
+            "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}/.vscode/run_tb.ps1", "${file}"],
+            "group": { "kind": "build", "isDefault": true },
+            "presentation": { "reveal": "always", "panel": "dedicated", "clear": true },
+            "problemMatcher": {
+                "owner": "iverilog",
+                "fileLocation": ["absolute"],
+                "pattern": {
+                    "regexp": "^(.*?):(\\d+):\\s*(error|warning|sorry):\\s*(.*)$",
+                    "file": 1, "line": 2, "severity": 3, "message": 4
+                }
+            }
+        },
+        {
+            "label": "Chay tb_RISCV_TOP",
+            "type": "shell",
+            "command": "powershell",
+            "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}/.vscode/run_tb.ps1", "${workspaceFolder}/RISC.srcs/sim_1/new/tb_RISCV_TOP.v"],
+            "group": "build",
+            "presentation": { "reveal": "always", "panel": "dedicated", "clear": true },
+            "problemMatcher": {
+                "owner": "iverilog",
+                "fileLocation": ["absolute"],
+                "pattern": {
+                    "regexp": "^(.*?):(\\d+):\\s*(error|warning|sorry):\\s*(.*)$",
+                    "file": 1, "line": 2, "severity": 3, "message": 4
+                }
+            }
+        },
+        {
+            "label": "Chay chuong trinh C (sw/main.c)",
+            "type": "shell",
+            "command": "powershell",
+            "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${workspaceFolder}/sw/run_c.ps1", "${workspaceFolder}/sw/main.c"],
+            "group": "build",
+            "presentation": { "reveal": "always", "panel": "dedicated", "clear": true },
+            "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "Mo GTKWave (testbench dang mo)",
+            "type": "shell",
+            "command": "C:/iverilog/gtkwave/bin/gtkwave.exe",
+            "args": ["${workspaceFolder}/sim_build/${fileBasenameNoExtension}.vcd"],
+            "problemMatcher": []
+        },
+        {
+            "label": "Vivado: Build bitstream",
+            "type": "shell",
+            "command": "powershell",
+            "args": ["-NoProfile", "-Command", "& 'D:/Vivado/2018.3/bin/vivado.bat' -mode batch -nojournal -nolog -source '${workspaceFolder}/.vscode/vivado/build.tcl'"],
+            "options": { "cwd": "${workspaceFolder}" },
+            "presentation": { "reveal": "always", "panel": "dedicated", "clear": true },
+            "problemMatcher": []
+        },
+        {
+            "label": "Vivado: Nap xuong board",
+            "type": "shell",
+            "command": "powershell",
+            "args": ["-NoProfile", "-Command", "& 'D:/Vivado/2018.3/bin/vivado.bat' -mode batch -nojournal -nolog -source '${workspaceFolder}/.vscode/vivado/program.tcl'"],
+            "options": { "cwd": "${workspaceFolder}" },
+            "presentation": { "reveal": "always", "panel": "dedicated", "clear": true },
+            "problemMatcher": []
+        },
+        {
+            "label": "Vivado: Build + Nap",
+            "dependsOrder": "sequence",
+            "dependsOn": ["Vivado: Build bitstream", "Vivado: Nap xuong board"],
+            "problemMatcher": []
+        }
+    ]
+}

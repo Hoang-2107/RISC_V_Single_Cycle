@@ -1,0 +1,59 @@
+Vivado Simulator 2018.3
+Time resolution is 1 ps
+WARNING: File D:RISCRISC.srcssim_1program.hex referenced on D:/RISC/RISC.srcs/sources_1/new/Instruction_Mem.v at line 33 cannot be opened for reading. Please ensure that this file is available in the current working directory.
+
+========== BAT DAU CHAY CHUONG TRINH ==========
+cyc  0 | PC=zzzzzzzz INST=xxxxxxxx | ALUctrl=xxxx ALU=xxxxxxxx | wb_en=z -> xx = xxxxxxxx
+  FAIL: PC = zzzzzzzz, mong doi 00000004
+cyc  1 | PC=zzzzzzzz INST=xxxxxxxx | ALUctrl=xxxx ALU=xxxxxxxx | wb_en=z -> xx = xxxxxxxx
+  FAIL: PC = zzzzzzzz, mong doi xxxxxxxx
+cyc  2 | PC=zzzzzzzz INST=xxxxxxxx | ALUctrl=xxxx ALU=xxxxxxxx | wb_en=z -> xx = xxxxxxxx
+  FAIL: PC = zzzzzzzz, mong doi xxxxxxxx
+cyc  3 | PC=zzzzzzzz INST=xxxxxxxx | ALUctrl=xxxx ALU=xxxxxxxx | wb_en=z -> xx = xxxxxxxx
+  FAIL: PC = zzzzzzzz, mong doi xxxxxxxx
+cyc  4 | PC=zzzzzzzz INST=xxxxxxxx | ALUctrl=xxxx ALU=xxxxxxxx | wb_en=z -> xx = xxxxxxxx
+  FAIL: PC = zzzzzzzz, mong doi xxxxxxxx
+cyc  5 | PC=zzzzzzzz INST=xxxxxxxx | ALUctrl=xxxx ALU=xxxxxxxx | wb_en=z -> xx = xxxxxxxx
+  FAIL: PC = zzzzzzzz, mong doi xxxxxxxx
+cyc  6 | PC=zzzzzzzz INST=xxxxxxxx | ALUctrl=xxxx ALU=xxxxxxxx | wb_en=z -> xx = xxxxxxxx
+  FAIL: PC = zzzzzzzz, mong doi xxxxxxxx
+cyc  7 | PC=zzzzzzzz INST=xxxxxxxx | ALUctrl=xxxx ALU=xxxxxxxx | wb_en=z -> xx = xxxxxxxx
+  FAIL: PC = zzzzzzzz, mong doi xxxxxxxx
+cyc  8 | PC=zzzzzzzz INST=xxxxxxxx | ALUctrl=xxxx ALU=xxxxxxxx | wb_en=z -> xx = xxxxxxxx
+  FAIL: PC = zzzzzzzz, mong doi xxxxxxxx
+cyc  9 | PC=zzzzzzzz INST=xxxxxxxx | ALUctrl=xxxx ALU=xxxxxxxx | wb_en=z -> xx = xxxxxxxx
+  FAIL: PC = zzzzzzzz, mong doi xxxxxxxx
+cyc 10 | PC=zzzzzzzz INST=xxxxxxxx | ALUctrl=xxxx ALU=xxxxxxxx | wb_en=z -> xx = xxxxxxxx
+  FAIL: PC = zzzzzzzz, mong doi xxxxxxxx
+cyc 11 | PC=zzzzzzzz INST=xxxxxxxx | ALUctrl=xxxx ALU=xxxxxxxx | wb_en=z -> xx = xxxxxxxx
+  FAIL: PC = zzzzzzzz, mong doi xxxxxxxx
+cyc 12 | PC=zzzzzzzz INST=xxxxxxxx | ALUctrl=xxxx ALU=xxxxxxxx | wb_en=z -> xx = xxxxxxxx
+  FAIL: PC = zzzzzzzz, mong doi xxxxxxxx
+cyc 13 | PC=zzzzzzzz INST=xxxxxxxx | ALUctrl=xxxx ALU=xxxxxxxx | wb_en=z -> xx = xxxxxxxx
+  FAIL: PC = zzzzzzzz, mong doi xxxxxxxx
+cyc 14 | PC=zzzzzzzz INST=xxxxxxxx | ALUctrl=xxxx ALU=xxxxxxxx | wb_en=z -> xx = xxxxxxxx
+  FAIL: PC = zzzzzzzz, mong doi xxxxxxxx
+cyc 15 | PC=zzzzzzzz INST=xxxxxxxx | ALUctrl=xxxx ALU=xxxxxxxx | wb_en=z -> xx = xxxxxxxx
+  FAIL: PC = zzzzzzzz, mong doi xxxxxxxx
+
+================== KET QUA ===================
+  FAIL                  addi x 1 = 00000000  (mong doi 0000000f)
+  FAIL                  addi x 2 = 00000000  (mong doi 00000003)
+  FAIL          addi am (-8) x 3 = 00000000  (mong doi fffffff8)
+  FAIL                  addi x 4 = 00000000  (mong doi 00000002)
+  FAIL                   add x 5 = 00000000  (mong doi 00000012)
+  FAIL                   sub x 6 = 00000000  (mong doi 0000000c)
+  FAIL                   and x 7 = 00000000  (mong doi 00000003)
+  FAIL                    or x 8 = 00000000  (mong doi 0000000f)
+  FAIL                   xor x 9 = 00000000  (mong doi 0000000c)
+  FAIL                   sll x10 = 00000000  (mong doi 0000003c)
+  FAIL                   srl x11 = 00000000  (mong doi 3ffffffe)
+  FAIL                   sra x12 = 00000000  (mong doi fffffffe)
+  FAIL           slt (-8<15) x13 = 00000000  (mong doi 00000001)
+  PASS                  sltu x14 = 00000000
+  FAIL         add phu thuoc x15 = 00000000  (mong doi 0000001e)
+  PASS            ghi vao x0 x 0 = 00000000
+
+>>> CO 30 LOI <<<
+
+$finish called at time : 177 ns : File "D:/RISC/RISC.srcs/sim_1/new/TB_RISCV.v" Line 103
