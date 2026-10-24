@@ -16,9 +16,9 @@ module Instruction_Mem#(
         parameter ADDR_WIDTH = 10, // 2^10 = 1024 word lenh
         parameter MEM_FILE = "D:/RISC/rv32i_test.hex" // duong dan file .hex ("" = chuong trinh viet san)
 )(
-    reset, read_address, instruction
+    read_address, instruction
     );
- input reset;
+
  input [31:0] read_address;
  output [31:0] instruction;
  // PC la dia chi BYTE, moi lenh 4 byte -> bo 2 bit thap de ra chi so word

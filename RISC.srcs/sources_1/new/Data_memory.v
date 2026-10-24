@@ -42,35 +42,33 @@ module Data_memory #(parameter ADDR_WIDTH = 5,
     end
     assign read_data = (mem_read) ? load_val : 32'd0;
 
-    // ---- Ghi du lieu: chi thay cac byte duoc chon (mat na wmask) ----
-    reg [31:0] wmask, wdata;
+    // ---- Ghi du lieu theo tung byte (byte-enable) ----
+    // we[i] = 1 -> ghi byte i cua word. Vivado nhan dang duoc mau nay la RAM.
+    reg [3:0]  we;
+    reg [31:0] wdata;
     always @(*) begin
         case (funct3[1:0])
-            2'b00:   begin wmask = 32'h000000FF << byte_shift; wdata = {4{write_data[7:0]}};  end // SB
-            2'b01:   begin wmask = 32'h0000FFFF << byte_shift; wdata = {2{write_data[15:0]}}; end // SH
-            default: begin wmask = 32'hFFFFFFFF;               wdata = write_data;            end // SW
+            2'b00:   begin we = 4'b0001 << address[1:0];              wdata = {4{write_data[7:0]}};  end // SB
+            2'b01:   begin we = address[1] ? 4'b1100 : 4'b0011;      wdata = {2{write_data[15:0]}}; end // SH
+            default: begin we = 4'b1111;                              wdata = write_data;            end // SW
         endcase
     end
 
-   integer k;
-   always @(posedge clk) begin
-    if(mem_write)
-            // giu nguyen byte khong ghi, thay byte duoc chon
-            Dmemory[word_addr] <= (mem_word & ~wmask) | (wdata & wmask);
-       end
-   // them khoi ghi moi(khong co reset) de tranh viec ghi lai 0 khi reset, vi khi reset chi can xoa cac thanh ghi, khong can xoa bo nho du lieu)
-   always @(posedge clk) begin
-        if(mem_write)
-            // giu nguyen byte khong ghi, thay byte duoc chon
-            Dmemory[word_addr] <= (mem_word & ~wmask) | (wdata & wmask);
+    always @(posedge clk) begin
+        if (mem_write) begin
+            if (we[0]) Dmemory[word_addr][ 7: 0] <= wdata[ 7: 0];
+            if (we[1]) Dmemory[word_addr][15: 8] <= wdata[15: 8];
+            if (we[2]) Dmemory[word_addr][23:16] <= wdata[23:16];
+            if (we[3]) Dmemory[word_addr][31:24] <= wdata[31:24];
         end
-   //     Them khoi khoi tao (thay cho reset ve 0)
+    end
+
+    // Khoi tao bo nho (thay cho reset ve 0)
+    integer k;
     initial begin
-        for (k=0; k < (1<<ADDR_WIDTH); k = k+1) begin
+        for (k = 0; k < (1<<ADDR_WIDTH); k = k + 1)
             Dmemory[k] = 32'h0;
-        end
-        if (MEM_FILE != "") begin
+        if (MEM_FILE != "")
             $readmemh(MEM_FILE, Dmemory);
-        end
     end
 endmodule

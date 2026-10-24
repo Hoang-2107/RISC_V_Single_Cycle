@@ -17,3 +17,6 @@ sw/build/
 *.vcd
 *.o
 *.elf
+
+# Office lock files
+~$*

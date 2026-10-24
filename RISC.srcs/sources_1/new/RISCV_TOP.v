@@ -156,11 +156,11 @@ module RISCV_TOP
     // Khoi "Shift left 1" theo so do sach. HIEN KHONG DUNG: shift_out
     // khong noi vao dau ca, vi Imm_Gen da dich san (xem Imm_Gen.v B-type).
     // Vivado se tu loai bo khoi nay khi tong hop (khong ton tai nguyen).
-    Shift_barek#(.WIDTH(32),.SHIFT_AMOUNT(1) )
-    Shift_barek(
-    .Shift_in(im_gen_top),
-    .Shift_out(shift_out)
-    );
+    // Shift_barek#(.WIDTH(32),.SHIFT_AMOUNT(1) )
+    // Shift_barek(
+    // .Shift_in(im_gen_top),
+    // .Shift_out(shift_out)
+    // );
     
  
     
