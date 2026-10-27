@@ -48,12 +48,7 @@ module Control_unit(OPcode,branch, mem_read, mem_to_reg, mem_write,ALU_src, reg_
     ALU_a_sel = 2'b00;
     case(OPcode)
     R_type: begin
-            branch     = 1'b0;
-            mem_read   = 1'b0;
-            mem_to_reg = 1'b0;   // ghi tu ALU result
             ALUop_out     = 2'b10;  // bao ALU Control giai ma theo funct3/funct7
-            mem_write  = 1'b0;
-            ALU_src    = 1'b0;   // dung thanh ghi, khong dung immediate
             reg_write  = 1'b1;   // co ghi ket qua vao thanh ghi
             end
     I_type: begin 
@@ -108,7 +103,7 @@ module Control_unit(OPcode,branch, mem_read, mem_to_reg, mem_write,ALU_src, reg_
              reg_write = 1'b0;
              ALUop_out = 2'b00;
              end
-//             default:
+
     endcase
     
     end
