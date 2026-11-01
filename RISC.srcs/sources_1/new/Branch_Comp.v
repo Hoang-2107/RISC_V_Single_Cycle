@@ -16,15 +16,21 @@ module Branch_Comp(
     input         branch,       // tu Control_unit
     output        take          // 1 = PC <- PC + offset
 );
+localparam BEQ  = 3'b000, 
+           BNE  = 3'b001, 
+           BLT  = 3'b100, 
+           BGE  = 3'b101, 
+           BLTU = 3'b110, 
+           BGEU = 3'b111;
     reg cond;
     always @(*) begin
         case (funct3)
-            3'b000:  cond = (rs1 == rs2);                    // BEQ
-            3'b001:  cond = (rs1 != rs2);                    // BNE
-            3'b100:  cond = ($signed(rs1) <  $signed(rs2));  // BLT
-            3'b101:  cond = ($signed(rs1) >= $signed(rs2));  // BGE
-            3'b110:  cond = (rs1 <  rs2);                    // BLTU
-            3'b111:  cond = (rs1 >= rs2);                    // BGEU
+            BEQ:  cond = (rs1 == rs2);                    // BEQ
+            BNE:  cond = (rs1 != rs2);                    // BNE
+            BLT:  cond = ($signed(rs1) <  $signed(rs2));  // BLT
+            BGE:  cond = ($signed(rs1) >= $signed(rs2));  // BGE
+            BLTU:  cond = (rs1 <  rs2);                    // BLTU
+            BGEU:  cond = (rs1 >= rs2);                    // BGEU
             default: cond = 1'b0;                            // 010, 011 khong ton tai
         endcase
     end
