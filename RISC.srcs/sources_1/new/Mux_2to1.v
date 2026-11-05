@@ -6,5 +6,5 @@ module Mux_2to1(
     input sel;
     output [31:0] y;
     assign y = sel ? d1 : d0;
-    
+
 endmodule

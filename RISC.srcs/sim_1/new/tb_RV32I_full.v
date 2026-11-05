@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 // ============================================================================
 // Testbench: tb_RV32I_full - kiem tra DU 37 lenh RV32I, TUNG LENH MOT
-//   - Chuong trinh nap tu file D:/RISC/rv32i_full.hex (qua parameter MEM_FILE
+//   - Chuong trinh nap tu file D:/RISC/sw/hex/rv32i_full.hex (qua parameter MEM_FILE
 //     cua RISCV_TOP -> Instruction_Mem dung $readmemh).
 //   - Bang "mong doi" liet ke tung lenh DUOC THUC THI theo dung thu tu:
 //       PC, co ghi thanh ghi hay khong, thanh ghi dich, gia tri ghi.
@@ -23,7 +23,7 @@ module tb_RV32I_full;
     localparam HALT_PC = 32'h000000D8;
     localparam MAX_EXP = 64;
 
-    RISCV_TOP #(.MEM_FILE("D:/RISC/rv32i_full.hex")) dut (
+    RISCV_TOP #(.MEM_FILE("D:/RISC/sw/hex/rv32i_full.hex")) dut (
         .clk    (clk),
         .reset  (reset),
         .pc_out (pc_out),
